@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "45SMMM3B23.com.arslanahmad.FootStepsANS",
+                "paths": ["/join/*"]
+            }
+        ]
+    }
+}
