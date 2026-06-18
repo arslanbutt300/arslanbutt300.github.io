@@ -26,6 +26,7 @@
         a:hover { text-decoration: underline; }
         .highlight { background: #17171C; border-radius: 12px; padding: 16px 20px; margin: 16px 0; }
         .highlight p { margin-bottom: 0; }
+        code { background: #17171C; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #AFA9EC; }
     </style>
 </head>
 <body>
@@ -33,52 +34,101 @@
         <div class="icon">👣</div>
         <h1>Privacy Policy</h1>
         <p class="app-name">FootSteps — GPS Trail Tracker</p>
-        <p class="updated">Last updated: June 3, 2026</p>
+        <p class="updated">Last updated: June 18, 2026</p>
 
         <h2>Overview</h2>
         <p>FootSteps is a GPS trail tracking app. Your privacy matters to us. This policy explains what data we collect, how we use it, and your rights.</p>
 
         <div class="highlight">
-            <p><strong>The short version:</strong> Your trail data stays on your device. We don't sell your data. We don't track you for advertising.</p>
+            <p><strong>The short version:</strong> Your trails stay on your device. We collect basic usage analytics to improve the app. We don't sell your data. We don't track you for advertising.</p>
         </div>
 
         <h2>Data We Collect</h2>
         <ul>
-            <li><strong>Account information:</strong> Email address and name when you create an account (stored securely via Supabase Auth).</li>
-            <li><strong>Location data:</strong> GPS coordinates recorded only when you actively start trail recording. Location data is stored locally on your device.</li>
+            <li><strong>Account information:</strong> Email address and name when you create an account, stored securely via Supabase Auth.</li>
+            <li><strong>Location data:</strong> GPS coordinates recorded only when you actively start trail recording. Recorded trails are stored locally on your device.</li>
             <li><strong>Trail data:</strong> Trail names, distances, waypoints, and GPS points are stored locally in your device's database.</li>
+            <li><strong>Usage analytics:</strong> Anonymous event data (which features you use, app version, OS version, device model, install date) to help us improve the app.</li>
+            <li><strong>Crash diagnostics:</strong> Stack traces and device state when the app crashes, used to fix bugs.</li>
+            <li><strong>Push notification token:</strong> A device-specific token used to deliver notifications. The token contains no personal data.</li>
         </ul>
+
+        <h2>Analytics &amp; Crash Reporting</h2>
+        <p>We use <strong>Firebase Analytics</strong> and <strong>Firebase Crashlytics</strong> (provided by Google) to understand how the app is used and to diagnose problems. Collected data includes:</p>
+        <ul>
+            <li>App version, iOS version, device model</li>
+            <li>Anonymous event data (which features you use and when)</li>
+            <li>Crash logs and stack traces</li>
+            <li>Your account user ID and email, used to link crash reports to support requests</li>
+        </ul>
+        <p>This data is processed by Google. We do not use it for advertising and do not share it with third-party advertisers. See <a href="https://firebase.google.com/support/privacy">Firebase Privacy</a> and <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
+
+        <h2>Push Notifications</h2>
+        <p>If you grant notification permission, we send you notifications for:</p>
+        <ul>
+            <li>When a friend you invited connects with you</li>
+            <li>When a friend sends you a trail directly</li>
+            <li>A welcome message on first sign-in</li>
+            <li>Local "trail saved" confirmations on your device</li>
+        </ul>
+        <p>To deliver these, we register your device with <strong>Firebase Cloud Messaging</strong> and store an opaque device token alongside your user ID in our Supabase database. You can disable notifications anytime in iOS Settings → FootSteps → Notifications.</p>
+
+        <h2>Trail Sharing Between Friends</h2>
+        <p>When you send a trail directly to another FootSteps user, the trail file is temporarily stored in a private Supabase Storage bucket (encrypted in transit). The recipient downloads it and:</p>
+        <ul>
+            <li>If they <strong>Import</strong> the trail → the file is deleted from our servers</li>
+            <li>If they <strong>Decline</strong> the trail → the file is deleted from our servers</li>
+            <li>If they ignore the trail for <strong>30 days</strong> → the file is automatically deleted</li>
+        </ul>
+        <p>Only the sender and the intended recipient can access a shared trail file. We do not view, analyze, or share the contents of your trails.</p>
+        <p>You can also share trails as <code>.footsteps</code> files via any app (Messages, WhatsApp, etc.) — those files never touch our servers.</p>
+
+        <h2>Google Drive Backup</h2>
+        <p>If you choose to back up your trails to Google Drive (a Premium feature), your trail data is uploaded to your own Google Drive account. We use the <code>drive.file</code> scope, which means FootSteps can only access files it created — not your other Drive files. You can disconnect Google Drive at any time from Settings.</p>
 
         <h2>Data We Do NOT Collect</h2>
         <ul>
             <li>We do not track your location in the background unless you are actively recording a trail.</li>
-            <li>We do not collect analytics or usage data.</li>
             <li>We do not use advertising SDKs or tracking pixels.</li>
-            <li>We do not sell or share your personal data with third parties.</li>
+            <li>We do not sell your personal data.</li>
+            <li>We do not share data with third parties for marketing purposes.</li>
+            <li>We do not collect contacts, photos, health data, or browsing history.</li>
         </ul>
-
-        <h2>Google Drive Backup</h2>
-        <p>If you choose to back up your trails to Google Drive, your trail data is uploaded to your own Google Drive account. We use the <code>drive.file</code> scope, which means FootSteps can only access files it created — not your other Drive files. You can disconnect Google Drive at any time from Settings.</p>
 
         <h2>Third-Party Services</h2>
         <ul>
-            <li><strong>Supabase:</strong> Used for user authentication (sign-in/sign-up). <a href="https://supabase.com/privacy">Supabase Privacy Policy</a></li>
-            <li><strong>Google Maps SDK:</strong> Used to display maps. <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
-            <li><strong>Google Sign-In:</strong> Used as an optional sign-in method. Subject to Google's privacy policy.</li>
-            <li><strong>Sign in with Apple:</strong> Used as an optional sign-in method. Subject to Apple's privacy policy.</li>
+            <li><strong>Supabase:</strong> Account authentication, trail sharing storage, family connections, push token storage. <a href="https://supabase.com/privacy">Supabase Privacy Policy</a></li>
+            <li><strong>Firebase (Google):</strong> Analytics, crash reporting, push notification delivery. <a href="https://firebase.google.com/support/privacy">Firebase Privacy</a></li>
+            <li><strong>Google Maps SDK:</strong> Map rendering. <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
+            <li><strong>Google Sign-In:</strong> Optional sign-in method. Subject to Google's privacy policy.</li>
+            <li><strong>Sign in with Apple:</strong> Optional sign-in method. Subject to Apple's privacy policy.</li>
+            <li><strong>Google Drive:</strong> Optional Premium backup. Subject to Google's privacy policy.</li>
         </ul>
 
-        <h2>Data Storage</h2>
-        <p>All trail data is stored locally on your device using SwiftData. Your authentication session is stored in the iOS Keychain. No trail data is stored on our servers.</p>
-
-        <h2>Data Sharing</h2>
-        <p>You can choose to share individual trails with other people via <code>.footsteps</code> files. This is entirely opt-in — trails are only shared when you explicitly tap "Share" and send the file to someone.</p>
+        <h2>Data Storage &amp; Retention</h2>
+        <p>Recorded trails are stored locally on your device using SwiftData. Your authentication session is stored in the iOS Keychain. Account data (email, name) is stored on Supabase servers. Analytics data is retained by Firebase per Google's standard retention policies. Shared trail files are deleted upon import, decline, or after 30 days of inactivity.</p>
 
         <h2>Account Deletion</h2>
-        <p>You can delete your account at any time from Settings. This permanently removes your authentication data. Local trail data is cleared from the device upon sign-out.</p>
+        <p>You can delete your account at any time from Settings. When you delete your account, the following are removed:</p>
+        <ul>
+            <li>Your account and profile</li>
+            <li>Family connections</li>
+            <li>Your push notification token</li>
+            <li>Any unimported shared trail files in transit to you</li>
+        </ul>
+        <p>Trails that have already been imported by other users remain in their personal copies and are outside our control.</p>
 
         <h2>Children's Privacy</h2>
         <p>FootSteps is not directed at children under 13. We do not knowingly collect data from children.</p>
+
+        <h2>Your Rights</h2>
+        <p>You can:</p>
+        <ul>
+            <li>Access or export your trail data from within the app</li>
+            <li>Delete your account and all associated data from Settings</li>
+            <li>Disable notifications, location access, and analytics in iOS Settings</li>
+            <li>Request a copy of the data we hold about you by emailing us</li>
+        </ul>
 
         <h2>Changes to This Policy</h2>
         <p>We may update this policy from time to time. Changes will be posted on this page with an updated date.</p>
